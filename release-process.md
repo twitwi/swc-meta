@@ -6,14 +6,15 @@ This process has been created with the aim of disrupting as little as possible t
 
 ## Overview
 
-As today, each lesson will live in its own repository, using a single branch named `gh-pages` (this way the latest version of the repository can be accessed anytime for preview by lesson developers, when we soon switch to Jekyll).
+As today, each lesson will live in its own repository, using a single branch named `gh-pages`.
+If we switch to Jekyll (discussions are in progress), we get a big advantage: the latest version of the lesson can always be accessed for preview by lesson developers.
 
-In addition, when a release has to be made, the lesson maintainer will tag the commit with, e.g., `v5.9`.
+In addition, when a release has to be made, the *lesson maintainer* will mark the version by creating a branch, e.g., `v5.9`.
 
-In addition, still in the lesson repository, the toplevel releaser, will make a `v5.9-html` tag by generating the HTML from `v5.9`.
+Still in the lesson repository, the *toplevel releaser*, will generate the HTML pages on the branch, e.g., `v5.9`.
 
 In addition, there will be a single `swc-release` repository (with a single `gh-pages` branch), with a subfolder for each released version, e.g., `5.9`.
-Each subfolder will contain an "index" page and a submodule pointing to each lesson, pointing to `v5.9-html`.
+Each subfolder will contain an "index" page and a submodule pointing to each lesson, pointing to branch `v5.9`.
 The result will be a website aggregating all the lessons (in the selected version) [ex53].
 
 
@@ -22,15 +23,15 @@ The result will be a website aggregating all the lessons (in the selected versio
 - *all*: decide that a new toplevel release (of all core lessons) will happen, give it a version number, e.g., `5.9`.
 - (for each lesson) *lesson maintainers*:
     - check that the lesson is in a good shape
-    - tag it with `v5.9`
+    - make a branch named `v5.9`
 - (for each lesson) *toplevel releaser*:
     - clone the lesson
-    - from `v5.9`, make and work on a new branch `v5.9-html`
+    - switch to the `v5.9` branch
     - generate the HTML page and check/validate it
-    - commit the HTML and push the new branch
+    - commit the HTML and push
 - *toplevel releaser*, in the `swc-release` repository (this step could be assisted by a script):
     - create a `5.9` subfolder
-    - in this folder, for each lesson, add a submodule pointing to the `v5.9-html` tag/branch
+    - in this folder, for each lesson, add a submodule pointing to the `v5.9` tag/branch
     - create an index file
     - commit and push
 - *toplevel releaser*: check the online version
@@ -60,13 +61,6 @@ TBD
 At least, simpler to manage.
 TBD
 
-## Tag vs Branch for `v5.9` and `v5.9-html`
-
-Both have different advantages, and for now, it is quite balanced.
-
-A tag has the advantage to remain fixed by default.
-A branch has the advantage that it will avoid a commit-by-mistake of generated HTML in the `gh-pages` branch.
-
 
 ## About custom intermediary releases
 
@@ -93,7 +87,8 @@ Here is the rationale for using submodules for releases:
 
 - Submodules must only be manipulated by toplevel releasers (not by lesson maintainers, authors or instructors).
 - Submodules will never be updated.
-- 
+- Submodules allow us to avoid copying HTML files: what we see (in the release repo) is what we have (in the lesson repo).
+
 
 ## Possible more references
 
