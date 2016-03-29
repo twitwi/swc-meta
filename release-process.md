@@ -17,7 +17,7 @@ Each subfolder will contain an "index" page and a submodule pointing to each les
 The result will be a website aggregating all the lessons (in the selected version) [ex53].
 
 
-## Release process as steps
+## The process
 
 - *all*: decide that a new toplevel release (of all core lessons) will happen, give it a version number, e.g., `5.9`.
 - (for each lesson) *lesson maintainers*:
@@ -25,9 +25,9 @@ The result will be a website aggregating all the lessons (in the selected versio
     - tag it with `v5.9`
 - (for each lesson) *toplevel releaser*:
     - clone the lesson
-    - make a new branch, `v5.9-html`
-    - generate the HTML page and check it
-    - commit the HTML
+    - from `v5.9`, make and work on a new branch `v5.9-html`
+    - generate the HTML page and check/validate it
+    - commit the HTML and push the new branch
 - *toplevel releaser*, in the `swc-release` repository (this step could be assisted by a script):
     - create a `5.9` subfolder
     - in this folder, for each lesson, add a submodule pointing to the `v5.9-html` tag/branch
