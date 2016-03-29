@@ -6,15 +6,15 @@ This process has been created with the aim of disrupting as little as possible t
 
 ## Overview
 
-As today, each lesson will live in its own repository, using a single branch named `gh-pages` (this way the latest version of the repository can be accessed anytime for preview by lesson developers).
+As today, each lesson will live in its own repository, using a single branch named `gh-pages` (this way the latest version of the repository can be accessed anytime for preview by lesson developers, when we soon switch to Jekyll).
 
-In addition, when a release has to be made, the lesson maintainer will tag the commit (as a tag or a micro-branch) with, e.g., `v5.9`.
+In addition, when a release has to be made, the lesson maintainer will tag the commit with, e.g., `v5.9`.
 
-In addition, still in the lesson repository, the toplevel releaser, will make a `v5.9-html` tag/branch by generating the HTML from `v5.9`.
+In addition, still in the lesson repository, the toplevel releaser, will make a `v5.9-html` tag by generating the HTML from `v5.9`.
 
 In addition, there will be a single `swc-release` repository (with a single `gh-pages` branch), with a subfolder for each released version, e.g., `5.9`.
 Each subfolder will contain an "index" page and a submodule pointing to each lesson, pointing to `v5.9-html`.
-The result will be a website aggregating all the lessons, in the selected version [ex53].
+The result will be a website aggregating all the lessons (in the selected version) [ex53].
 
 
 ## Release process as steps
@@ -60,6 +60,14 @@ TBD
 At least, simpler to manage.
 TBD
 
+## Tag vs Branch for `v5.9` and `v5.9-html`
+
+Both have different advantages, and for now, it is quite balanced.
+
+A tag has the advantage to remain fixed by default.
+A branch has the advantage that it will avoid a commit-by-mistake of generated HTML in the `gh-pages` branch.
+
+
 ## About custom intermediary releases
 
 TBD
@@ -92,8 +100,7 @@ Here is the rationale for using submodules for releases:
 - https://github.com/swcarpentry/lesson-template/issues/62
 - https://github.com/swcarpentry/lesson-template/issues/76
 - https://github.com/twitwi/test-jekyll-multi-swc-4.3-fake/
-
-[ex53] Example with a few lessons in version 5.3: http://twitwi.github.io/test-jekyll-multi-swc-4.3-fake/5.3/
+- [ex53] Example with a few lessons in version 5.3:  http://twitwi.github.io/test-jekyll-multi-swc-4.3-fake/5.3/
 
 
 
