@@ -6,7 +6,7 @@ This process has been designed to disrupt the current management of lesson repos
 ## Overview
 
 1. Each lesson will continue live in the `gh-pages` branch of its own repository.
-2. When a release has to be made, the *lesson maintainer* (or maintainers) will creating a branch named after the release, e.g., `v5.9`.
+2. When a release has to be made, the *lesson maintainer* (or maintainers) will create a branch named after the release, e.g., `v5.9`.
 3. A *release maintainer* will generate HTML pages for that release and add them to the branch.
 4. If there isn't already a directory for that release in the `swc-release` repository,
    the release maintainer will create one
