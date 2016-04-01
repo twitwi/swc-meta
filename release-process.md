@@ -1,101 +1,53 @@
-
-
 # Lesson Release Process
 
-This process has been created with the aim of disrupting as little as possible the current management of lesson repositories.
+This document describes how Software Carpentry will manage releases of new versions of lessons.
+This process has been designed to disrupt the current management of lesson repositories as little as possible.
 
 ## Overview
 
-As today, each lesson will live in its own repository, using a single branch named `gh-pages`.
-If we switch to Jekyll (discussions are in progress), we get a big advantage: the latest version of the lesson can always be accessed for preview by lesson developers.
+1. Each lesson will continue live in the `gh-pages` branch of its own repository.
+2. When a release has to be made, the *lesson maintainer* (or maintainers) will creating a branch named after the release, e.g., `v5.9`.
+3. A *release maintainer* will generate HTML pages for that release and add them to the branch.
+4. If there isn't already a directory for that release in the `swc-release` repository,
+   the release maintainer will create one
+   and add an `index.html` page to it.
+5. The release maintainer will add a submodule to the release directory of `swc-release`
+   that points to the newly-created release branch of the lesson.
 
-In addition, when a release has to be made, the *lesson maintainer* will mark the version by creating a branch, e.g., `v5.9`.
+## Elements
 
-Still in the lesson repository, the *toplevel releaser*, will generate the HTML pages on the branch, e.g., `v5.9`.
+*  The `swc-release` repository
+   * This repository contain one directory for each release, e.g., `v5.9`.
+   *  Each release directory will contain one submodule for each lesson, e.g., `v5.9/shell-novice`.
+   *  That submodule will refer to the release branch in the lesson's repository, e.g., `https://github.com/swcarpentry/shell-novice/tree/v5.9`.
+*  The lesson maintainer(s)
+   *  Same roles as at present.
+*  The release maintainer
+   *  A volunteer who handles the `swc-release` repository and the submodules therein.
 
-In addition, there will be a single `swc-release` repository (with a single `gh-pages` branch), with a subfolder for each released version, e.g., `5.9`.
-Each subfolder will contain an "index" page and a submodule pointing to each lesson, pointing to branch `v5.9`.
-The result will be a website aggregating all the lessons (in the selected version) [ex53].
+## Discussion
 
+*  Old versions of lessons are available online in perpetuity with predictable URLs.
+   *  See <http://twitwi.github.io/test-jekyll-multi-swc-4.3-fake/5.3/> for proof that submodules show up properly in `github.io`
+      provided the generated HTML has been committed to the branch.
+*  No changes to our current day-to-day operations.
+*  Only one person (at a time) needs to comprehend the profound mysteries of Git submodules.
+*  Leaves open the option of switching to a pure-Jekyll process for active versions of lessons
+   (i.e., for what's in each lesson's `gh-pages` branch).
+   without requiring it.
+*  Alternatives were unappealing:
+   *  Create new repository for each release using `import` with its own `gh-pages` branch
+      *  Would make it harder to copy fixes back and forth between versions
+   *  Create sub-directory in each lesson's repository for each release, e.g., `shell-novice/v5.9`
+      *  Repeated duplication of files
+      *  Complicates management of layouts, paths to included files and images, etc.
+      *  Doesn't isolate version safely
+   *  Create sub-directory with only generated HTML and images
+      *  Duplicate files again
+      *  Doesn't support late-breaking fixes
 
-## The process
+## See Also
 
-- *all*: decide that a new toplevel release (of all core lessons) will happen, give it a version number, e.g., `5.9`.
-- (for each lesson) *lesson maintainers*:
-    - check that the lesson is in a good shape
-    - make a branch named `v5.9`
-- (for each lesson) *toplevel releaser*:
-    - clone the lesson
-    - switch to the `v5.9` branch
-    - generate the HTML page and check/validate it
-    - commit the HTML and push
-- *toplevel releaser*, in the `swc-release` repository (this step could be assisted by a script):
-    - create a `5.9` subfolder
-    - in this folder, for each lesson, add a submodule pointing to the `v5.9` tag/branch
-    - create an index file
-    - commit and push
-- *toplevel releaser*: check the online version
-- *website maintainer*:
-    - check the online version
-    - add/update links on the website
-
-----------------------------------------
-
-# When to release?
-
-TBD
-
-
-----------------------------------------
-
-# Vocabulary
-
-- *toplevel release*: release of a group core lessons, together (e.g., release 5.3).
-- *toplevel releasers*: maintainers responsible for the *toplevel releases*.
-
-
-# Discussions
-
-## About having a single release repository versus one per release
-
-At least, simpler to manage.
-TBD
-
-
-## About custom intermediary releases
-
-TBD
-
-- trade off between unstable vs "old" version
-- can use release scripts to help
-- may need to copy the generated HTML instead of only submodules
-
-## About HTML files and the impossibility to nest Jekyll roots
-
-Even if it would have been very nice to avoid committing generated html files in the repositories, we do this for multiple reasons:
-
-- Jekyll (that generates gh-pages dynamically) does not handle multiple subfolders with different configurations and thus is unable to handle an aggregation of multiple lessons.
-- Committing generated files, for a release, makes sense as it keeps a version that we are sure will work even if Jekyll is updated in a non-backward-compatible manner.
-- Our old process (v5.3) does use pandoc and not jekyll.
-
-## About using submodules
-
-Sub-modules are a complex git feature and can be tricky to use.
-This is especially true when they need to be updated.
-
-Here is the rationale for using submodules for releases:
-
-- Submodules must only be manipulated by toplevel releasers (not by lesson maintainers, authors or instructors).
-- Submodules will never be updated.
-- Submodules allow us to avoid copying HTML files: what we see (in the release repo) is what we have (in the lesson repo).
-
-
-## Possible more references
-
-- https://github.com/swcarpentry/lesson-template/issues/62
-- https://github.com/swcarpentry/lesson-template/issues/76
-- https://github.com/twitwi/test-jekyll-multi-swc-4.3-fake/
-- [ex53] Example with a few lessons in version 5.3:  http://twitwi.github.io/test-jekyll-multi-swc-4.3-fake/5.3/
-
-
-
+*   <https://github.com/swcarpentry/lesson-template/issues/62>
+*   <https://github.com/swcarpentry/lesson-template/issues/76>
+*   <https://github.com/twitwi/test-jekyll-multi-swc-4.3-fake/>
