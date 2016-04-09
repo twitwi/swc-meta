@@ -1,4 +1,27 @@
-# Lesson Release Process
+# Lesson Release Schedule and Naming
+
+It has been decided to use a **6-month release cycle**, after voting on the maintainer's mailing list (no objections to regular releases and 6 months was preferred over 1 year).
+
+Multiple release naming schemes can be used:
+
+1. `v5.9`, `v6.0`: as before (plus), but, for most people, does not convey any information (minus)
+2. `2016a`, `2016b`: contains the year (plus), not obvious what the letter means (minus)
+3. `201605`, `201611`: contains year and month (plus), can be considered long and difficult to read (minus)
+4. `2016.05`, `2016.11`: contains year and month (plus), slightly easier to read
+5. `16.05`, `16.11`: contains year and month (plus), short (plus), like ubuntu (plus) but not obvious it is the year (minus)
+
+^ CALL FOR A VOTE
+
+# Where to Host Releases
+
+We can imagine two ways (at least) for hosting releases of the lessons:
+
+- A. in a separate release repository, on github (see below)
+- B. using a script on a dedicated software carpentry server
+
+^ CALL FOR A VOTE
+
+# Lesson Release Process (using a separate release repo)
 
 This document describes how Software Carpentry will manage releases of new versions of lessons.
 This process has been designed to disrupt the current management of lesson repositories as little as possible.
@@ -51,3 +74,5 @@ This process has been designed to disrupt the current management of lesson repos
 *   <https://github.com/swcarpentry/lesson-template/issues/62>
 *   <https://github.com/swcarpentry/lesson-template/issues/76>
 *   <https://github.com/twitwi/test-jekyll-multi-swc-4.3-fake/>
+*   <http://stackoverflow.com/questions/9189575/git-submodule-tracking-latest/9189815#9189815>
+
